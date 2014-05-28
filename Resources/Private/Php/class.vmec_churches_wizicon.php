@@ -28,7 +28,7 @@
  * @package TYPO3
  * @subpackage tx_news
  */
-class vmecevents_events_wizicon {
+class vmecchurches_churches_wizicon {
 
 	const KEY = 'vmecchurches';
 
