@@ -1,0 +1,70 @@
+<T3DataStructure>
+	<sheets>
+		<sDEF>
+			<ROOT>
+				<TCEforms>
+					<sheetTitle>Ansicht</sheetTitle>
+				</TCEforms>
+				<type>array</type>
+				<el>
+					<switchableControllerActions>
+						<TCEforms>
+							<label>Ansicht wählen</label>
+							<config>
+								<type>select</type>
+								<items>
+									<numIndex index="0">
+										<numIndex index="0">Gemeindeliste</numIndex>
+										<numIndex index="1">Church->list</numIndex>
+									</numIndex>
+									<numIndex index="1">
+										<numIndex index="0">Gemeinden in der Umgebung</numIndex>
+										<numIndex index="1">Church->closest</numIndex>
+									</numIndex>
+									<numIndex index="2">
+										<numIndex index="0">Einzelansicht</numIndex>
+										<numIndex index="1">Church->show</numIndex>
+									</numIndex>
+									<numIndex index="3">
+										<numIndex index="0">Suchformular</numIndex>
+										<numIndex index="1">Church->searchForm</numIndex>
+									</numIndex>
+								</items>
+							</config>
+						</TCEforms>
+					</switchableControllerActions>
+				</el>
+			</ROOT>
+		</sDEF>
+		<sViewConfig>
+			<ROOT>
+				<TCEforms>
+					<sheetTitle>Vorlagenoptionen</sheetTitle>
+				</TCEforms>
+				<type>array</type>
+				<el>
+					<view.templateRootPath>
+					  <TCEforms>
+					    <label>Basispfad für Vorlagendateien</label>
+					    <config>
+					      <type>input</type>
+					      <size>20</size>
+					      <eval>trim</eval>
+					    </config>
+					  </TCEforms>
+					</view.templateRootPath>				
+					<settings.limit>
+					  <TCEforms>
+					    <label>Maximale Anzahl von Gemeinden in Listenansichten</label>
+					    <config>
+					      <type>input</type>
+					      <size>3</size>
+					      <eval>trim</eval>
+					    </config>
+					  </TCEforms>
+					</settings.limit>
+				</el>
+			</ROOT>
+		</sViewConfig>
+	</sheets>
+</T3DataStructure>
