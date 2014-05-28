@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2014-05-28T08:59:09Z" product-name="vmec_churches">
+		<header/>
+		<body>
+			<trans-unit id="street.description">
+				<source>street</source>
+			</trans-unit>
+			<trans-unit id="zip.description">
+				<source>zip</source>
+			</trans-unit>
+			<trans-unit id="city.description">
+				<source>city</source>
+			</trans-unit>
+			<trans-unit id="geo_lat.description">
+				<source>geoLat</source>
+			</trans-unit>
+			<trans-unit id="geo_long.description">
+				<source>geoLong</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>
