@@ -98,8 +98,8 @@ CREATE TABLE tx_vmecchurches_domain_model_address (
 	street varchar(255) DEFAULT '' NOT NULL,
 	zip varchar(255) DEFAULT '' NOT NULL,
 	city varchar(255) DEFAULT '' NOT NULL,
-	geo_lat double(11,2) DEFAULT '0.00' NOT NULL,
-	geo_long double(11,2) DEFAULT '0.00' NOT NULL,
+	geo_lat decimal(11,6) DEFAULT '0.00' NOT NULL,
+	geo_long decimal(11,6) DEFAULT '0.00' NOT NULL,
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
 	crdate int(11) unsigned DEFAULT '0' NOT NULL,
