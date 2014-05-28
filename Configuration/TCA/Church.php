@@ -121,8 +121,19 @@ $GLOBALS['TCA']['tx_vmecchurches_domain_model_church'] = array(
 			'config' => array(
 				'type' => 'input',
 				'size' => 30,
-				'eval' => 'trim'
-			),
+				'eval' => 'trim',
+	            'wizards' => array(
+	                '_PADDING' => 2,
+	                'link' => array(
+	                    'type' => 'popup',
+	                    'title' => 'LLL:EXT:cms/locallang_ttc.xml:header_link_formlabel',
+	                    'icon' => 'link_popup.gif',
+	                    'script' => 'browse_links.php?mode=wizard',
+	                    'JSopenParams' => 'height=300,width=500,status=0,menubar=0,scrollbars=1',
+	                ),
+	            ),
+	            'softref' => 'typolink',
+            ),
 		),
 		'image' => array(
 			'exclude' => 1,
