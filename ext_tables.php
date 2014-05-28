@@ -112,3 +112,9 @@ if (TYPO3_MODE == 'BE') {
 
 $TCA['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
 t3lib_extMgm::addPiFlexFormValue($pluginSignature, 'FILE:EXT:vmec_churches/Configuration/FlexForms/flexform_churches.xml');
+
+
+
+// HOOKS
+$GLOBALS ['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass']['vmec_churches'] = 'EXT:vmec_churches/Classes/Hooks/ProcessDatamap.php:VMeC\\VmecChurches\\Hooks\\ProcessDatamap';
+
