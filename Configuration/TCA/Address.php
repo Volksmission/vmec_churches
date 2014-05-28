@@ -6,7 +6,7 @@ if (!defined ('TYPO3_MODE')) {
 $GLOBALS['TCA']['tx_vmecchurches_domain_model_address'] = array(
 	'ctrl' => $GLOBALS['TCA']['tx_vmecchurches_domain_model_address']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, street, zip, city, geo_lat, geo_long',
+		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, street, zip, city',
 	),
 	'types' => array(
 		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, street, zip, city, geo_lat, geo_long, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, starttime, endtime'),
