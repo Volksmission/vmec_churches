@@ -59,5 +59,22 @@ class ChurchController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 	public function showAction(\VMeC\VmecChurches\Domain\Model\Church $church) {
 		$this->view->assign('church', $church);
 	}
+	
+	public function closestAction() {
+		if ((!$this->request->hasArgument('zip')) && (!$this->request->hasArgument('city'))) {
+			$churches = $this->churchRepository->findAll();
+			$searchResult = false;
+		} else {
+			$city = $this->request->hasArgument('city') ? $this->request->getArgument('city') : '';
+			$zip = $this->request->hasArgument('zip') ? 'DE-'.$this->request->getArgument('zip') : '';
+			$geocoder = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('VMeC\VmecChurches\Utility\Geocoder');
+			$loc = $geocoder->getLocation(join(' ', array($zip, $city)));
+			
+			$churches = $this->churchRepository->findClosest($loc['lat'], $loc['lng']);
+			$searchResult = true;
+		}
+		$this->view->assign('searchResult', $searchResult);
+		$this->view->assign('churches', $churches);
+	}
 
 }

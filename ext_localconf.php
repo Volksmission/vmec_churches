@@ -7,7 +7,7 @@ if (!defined('TYPO3_MODE')) {
 	'VMeC.' . $_EXTKEY,
 	'Churches',
 	array(
-		'Church' => 'list, show',
+		'Church' => 'list, show, closest',
 		'Leader' => 'list, show',
 		'Address' => 'list, show',
 		

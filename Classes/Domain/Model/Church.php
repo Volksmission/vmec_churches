@@ -80,6 +80,8 @@ class Church extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\VMeC\VmecChurches\Domain\Model\Leader>
 	 */
 	protected $leaders = NULL;
+	
+	protected $distance;
 
 	/**
 	 * __construct
@@ -252,6 +254,14 @@ class Church extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 */
 	public function setLeaders(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $leaders) {
 		$this->leaders = $leaders;
+	}
+	
+	public function setDistance($km) {
+		$this->distance = $km;
+	}
+	
+	public function getDistance() {
+		return $this->distance;
 	}
 
 }

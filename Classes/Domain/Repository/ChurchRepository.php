@@ -32,5 +32,32 @@ namespace VMeC\VmecChurches\Domain\Repository;
  */
 class ChurchRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 
-	
+	/**
+	 * Find the closest churches by latitude and longitude
+	 * 
+	 * @param float $lat Latitude
+	 * @param float $lng Longitude
+	 * @return array
+	 */
+	public function findClosest(float $lat, float $lng, $maxDistance = 10) {
+		$radius = 6368;
+		
+		$sql = 'SELECT c.uid, '
+				.'((ACOS(SIN('.$lat.' * PI() / 180) * SIN(geo_lat * PI() / 180) + COS('.$lat.' * PI() / 180) * COS(geo_lat * PI() / 180) * COS(('.$lng.' - geo_long) * PI() / 180)) * 180 / PI()) * 60 * 1.1515 * 1.609344) AS distance'
+				.' FROM tx_vmecchurches_domain_model_church c LEFT JOIN tx_vmecchurches_domain_model_address a ON c.location=a.uid'
+				.'';
+		
+		$query = $this->createQuery();
+		$query->getQuerySettings()->setReturnRawQueryResult(TRUE);
+		$query->statement($sql);
+		$res = $query->execute();
+		
+		$churches = array();
+		foreach ($res as $row) {
+			$church = $this->findByUid($row['uid']);
+			$church->setDistance($row['distance']);
+			$churches[] = $church;
+		}
+		return $churches;
+	}
 }
