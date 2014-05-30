@@ -14,7 +14,7 @@ if (!defined('TYPO3_MODE')) {
 	),
 	// non-cacheable actions
 	array(
-		'Church' => '',
+		'Church' => 'closest, searchForm',
 		'Leader' => '',
 		'Address' => '',
 		
