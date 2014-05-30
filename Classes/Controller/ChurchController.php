@@ -85,7 +85,17 @@ class ChurchController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 			$churches = $this->churchRepository->findClosest($loc['lat'], $loc['lng'], $distance);
 			$searchResult = true;
 		}
-		$this->view->assign('search', array('isResult' => $searchResult, 'zip' => $zip, 'city' => $city, 'distance' => $distance));
+		
+		$search = array(
+				'isResult' => $searchResult, 
+				'zip' => $zip, 
+				'city' => $city, 
+				'distance' => $distance,
+				'lat' => $loc['lat'],
+				'lng' => $loc['lng'],
+		);
+		
+		$this->view->assign('search', $search);
 		$this->view->assign('churches', $churches);
 	}
 
