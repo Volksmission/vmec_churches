@@ -66,12 +66,13 @@ class ChurchController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 	 * @return void
 	 */
 	public function closestAction() {
-		$distance = 50;
+		$defaultDistance = $this->settings['defaultDistance'] ? $this->settings['defaultDistance'] : 50; 
 		if ((!$this->request->hasArgument('zip')) && (!$this->request->hasArgument('city'))) {
 			$churches = $this->churchRepository->findAll();
 			$searchResult = false;
 			$zip = '';
 			$city = '';
+			$distance = $defaultDistance;
 		} else {
 			$city = $this->request->hasArgument('city') ? $this->request->getArgument('city') : '';
 			$zip = $this->request->hasArgument('zip') ? $this->request->getArgument('zip') : '';
@@ -79,7 +80,7 @@ class ChurchController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 			$loc = $geocoder->getLocation(join(' ', array(($zip ? 'DE-'.$zip : ''), $city)));
 			
 			if ($this->request->hasArgument('distance')) $distance = $this->request->getArgument('distance');
-			$distance = $distance ? $distance : 50;
+			$distance = $distance ? $distance : $defaultDistance;
 			
 			$churches = $this->churchRepository->findClosest($loc['lat'], $loc['lng'], $distance);
 			$searchResult = true;
@@ -94,6 +95,12 @@ class ChurchController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 	 * @return void
 	 */
 	public function searchFormAction() {
+		$defaultDistance = $this->settings['defaultDistance'] ? $this->settings['defaultDistance'] : 50;
+		$search['city'] = $this->request->hasArgument('city') ? $this->request->getArgument('city') : '';
+		$search['zip'] = $this->request->hasArgument('zip') ? $this->request->getArgument('zip') : '';
+		$search['distance'] = $this->request->hasArgument('distance') ? $this->request->getArgument('distance') : '';
+		$search['distance'] = $search['distance'] ? $search['distance'] : $defaultDistance; 
+		$this->view->assign ('search', $search);
 	}
 	
 }
