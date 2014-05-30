@@ -60,6 +60,11 @@ class ChurchController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 		$this->view->assign('church', $church);
 	}
 	
+	/**
+	 * action closest
+	 *
+	 * @return void
+	 */
 	public function closestAction() {
 		if ((!$this->request->hasArgument('zip')) && (!$this->request->hasArgument('city'))) {
 			$churches = $this->churchRepository->findAll();
@@ -77,4 +82,12 @@ class ChurchController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 		$this->view->assign('churches', $churches);
 	}
 
+	/**
+	 * action searchForm
+	 *
+	 * @return void
+	 */
+	public function searchFormAction() {
+	}
+	
 }
