@@ -81,6 +81,11 @@ class Church extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 */
 	protected $leaders = NULL;
 	
+	/**
+	 * Distance to search start (only for searches)
+	 * 
+	 * @var float
+	 */
 	protected $distance;
 
 	/**
