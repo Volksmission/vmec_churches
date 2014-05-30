@@ -66,19 +66,25 @@ class ChurchController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 	 * @return void
 	 */
 	public function closestAction() {
+		$distance = 50;
 		if ((!$this->request->hasArgument('zip')) && (!$this->request->hasArgument('city'))) {
 			$churches = $this->churchRepository->findAll();
 			$searchResult = false;
+			$zip = '';
+			$city = '';
 		} else {
 			$city = $this->request->hasArgument('city') ? $this->request->getArgument('city') : '';
-			$zip = $this->request->hasArgument('zip') ? 'DE-'.$this->request->getArgument('zip') : '';
+			$zip = $this->request->hasArgument('zip') ? $this->request->getArgument('zip') : '';
 			$geocoder = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('VMeC\VmecChurches\Utility\Geocoder');
-			$loc = $geocoder->getLocation(join(' ', array($zip, $city)));
+			$loc = $geocoder->getLocation(join(' ', array(($zip ? 'DE-'.$zip : ''), $city)));
 			
-			$churches = $this->churchRepository->findClosest($loc['lat'], $loc['lng']);
+			if ($this->request->hasArgument('distance')) $distance = $this->request->getArgument('distance');
+			$distance = $distance ? $distance : 50;
+			
+			$churches = $this->churchRepository->findClosest($loc['lat'], $loc['lng'], $distance);
 			$searchResult = true;
 		}
-		$this->view->assign('searchResult', $searchResult);
+		$this->view->assign('search', array('isResult' => $searchResult, 'zip' => $zip, 'city' => $city, 'distance' => $distance));
 		$this->view->assign('churches', $churches);
 	}
 
